@@ -1,0 +1,3 @@
+export const INITIAL_CHAT_DATA = 'INITIAL_CHAT_DATA';
+export const ON_DETAIL_LOAD = 'ON_DETAIL_LOAD';
+export const ON_NEW_MESSAGE = 'ON_NEW_MESSAGE';
