@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import { NavLink } from "react-router-dom";
 import PropTypes from "prop-types";
+import format from "date-fns/format";
+import { koLocale } from "date-fns/locale/ko";
 import "./Chat.css";
 
 export default class Chat extends Component {
@@ -22,14 +24,15 @@ export default class Chat extends Component {
     this.props.newMessenger(
       this.generateRandomString(3),
       this.props.chats.length + 1,
-      new Date().toTimeString().slice(0, 5),
+      format(new Date(), "HH:mm", {
+        locale: koLocale
+      }),
       "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRCptH2CO7ebtW4Yxt9rfKnHBjFD1NdNt4bUGYy4TO0YNznJ4Vr",
       this.generateRandomString(10)
     );
   };
 
   renderChatList = () => {
-    console.log(this.props);
     let sortTime = this.props.chats
       .sort(function(prev, next) {
         return next.created_at.slice(3) - prev.created_at.slice(3);

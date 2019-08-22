@@ -28,9 +28,7 @@ export default class ChatList extends Component {
     if (!inputValue) {
       return;
     }
-    const currentTime = new Date(new Date().toISOString())
-      .toString()
-      .slice(16, 21);
+    const currentTime = new Date().toISOString();
 
     let thumImg;
     for (let i = 0; i < this.props.detailChats.length; i++) {
@@ -45,7 +43,7 @@ export default class ChatList extends Component {
       this.props.location.id,
       this.props.detailChats.length + 1,
       Number(this.props.match.params.id),
-      currentTime,
+      new Date(currentTime).toString().slice(16, 21),
       thumImg,
       inputValue
     );
@@ -131,4 +129,4 @@ ChatList.propTypes = {
   getNewMessage: PropTypes.func,
   detailChats: PropTypes.array,
   newMessage: PropTypes.array
-};
+}

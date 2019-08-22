@@ -1,4 +1,6 @@
-import { initalState, chatsReducer, detailChatsReducer } from "./index";
+import { initalState } from "./index";
+import ChatsReducer from './ChatsReducer';
+import DetailChatsReducer from './DetailChatsReducer';
 import { initializeChatData, onDetailLoad } from "../actions";
 
 describe("reducer func test", () => {
@@ -6,8 +8,8 @@ describe("reducer func test", () => {
     expect(initalState).toHaveProperty("chats");
     expect(initalState.chats).toEqual([]);
     expect(initalState.detailChats).toEqual([]);
-    expect(chatsReducer(undefined, {})).toEqual(initalState.chats);
-    expect(detailChatsReducer(undefined, {})).toEqual(initalState.detailChats);
+    expect(ChatsReducer(undefined, {})).toEqual(initalState.chats);
+    expect(DetailChatsReducer(undefined, {})).toEqual(initalState.detailChats);
   });
 
   describe("action data test", () => {
@@ -22,13 +24,13 @@ describe("reducer func test", () => {
       };
 
       expect(
-        chatsReducer(initalState.chats, initFunc("뽀로로", "09:21", 0))
+        ChatsReducer(initalState.chats, initFunc("뽀로로", "09:21", 0))
       ).toEqual([
         { by: "뽀로로", created_at: "09:21", id: 0, thumbnail_image_url: "" }
       ]);
 
       expect(
-        chatsReducer(
+        ChatsReducer(
           [
             {
               by: "뽀로로",
@@ -67,7 +69,7 @@ describe("reducer func test", () => {
       };
 
       expect(
-        detailChatsReducer(
+        DetailChatsReducer(
           [],
           initDetailFunc("루피", 0, "12:34", 1, "left", null, "내꿈은 해적왕")
         )
@@ -84,7 +86,7 @@ describe("reducer func test", () => {
       ]);
 
       expect(
-        detailChatsReducer(
+        DetailChatsReducer(
           [
             {
               by: "루피",
