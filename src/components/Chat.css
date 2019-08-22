@@ -183,8 +183,7 @@
   border-radius: 6px;
   right: 0;
 }
-.chat-nav:hover
-.chat-send:hover,
+.chat-nav:hover .chat-send:hover,
 .chat-goback:hover,
 .message-block:hover {
   cursor: pointer;

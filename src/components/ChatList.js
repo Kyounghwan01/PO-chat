@@ -18,16 +18,19 @@ export default class ChatList extends Component {
       this.props.onDetail();
     }
   }
+
   componentDidUpdate() {
     this.scrollBox.current.scrollTop = this.scrollBox.current.scrollHeight;
   }
 
-  input = () => {
+  sendMessage = () => {
     const inputValue = this.inputReset.current.value;
     if (!inputValue) {
       return;
     }
-    const currentTime = new Date(new Date().toISOString()).toString().slice(16,21);
+    const currentTime = new Date(new Date().toISOString())
+      .toString()
+      .slice(16, 21);
 
     let thumImg;
     for (let i = 0; i < this.props.detailChats.length; i++) {
@@ -50,43 +53,40 @@ export default class ChatList extends Component {
 
   enterSubmit = e => {
     if (e.keyCode === 13) {
-      this.input();
+      this.sendMessage();
     }
   };
 
   renderChatList = () => {
     return this.props.detailChats.map(list => {
-      if (list.chat_id === Number(this.props.match.params.id)) {
-        if (list.position === "left") {
-          return (
-            <div className="chat-box" key={list.id}>
-              <img
-                className="chat-left-thum-size"
-                alt=""
-                src={list.thumbnail_image_url}
-              />
-              <div className="chat-left-body">
-                <span>{list.title}</span>
-              </div>
-              <span className="chat-left-date">{list.created_at}</span>
-            </div>
-          );
-        } else {
-          return (
-            <div className="chat-right-box" key={list.id}>
-              <img
-                className="chat-right-thum-size"
-                alt=""
-                src={list.thumbnail_image_url}
-              />
-              <div className="chat-right-body">
-                <span>{list.title}</span>
-              </div>
-              <span className="chat-right-date">{list.created_at}</span>
-            </div>
-          );
-        }
+      if (list.chat_id !== Number(this.props.match.params.id)) {
+        return;
       }
+      return list.position === "left" ? (
+        <div className="chat-box" key={list.id}>
+          <img
+            className="chat-left-thum-size"
+            alt=""
+            src={list.thumbnail_image_url}
+          />
+          <div className="chat-left-body">
+            <span>{list.title}</span>
+          </div>
+          <span className="chat-left-date">{list.created_at}</span>
+        </div>
+      ) : (
+        <div className="chat-right-box" key={list.id}>
+          <img
+            className="chat-right-thum-size"
+            alt=""
+            src={list.thumbnail_image_url}
+          />
+          <div className="chat-right-body">
+            <span>{list.title}</span>
+          </div>
+          <span className="chat-right-date">{list.created_at}</span>
+        </div>
+      );
     });
   };
 
@@ -115,7 +115,7 @@ export default class ChatList extends Component {
               onKeyDown={this.enterSubmit}
             />
             <span className="chat-btn">
-              <button className="chat-send" onClick={this.input}>
+              <button className="chat-send" onClick={this.sendMessage}>
                 <span>보내기</span>
               </button>
             </span>

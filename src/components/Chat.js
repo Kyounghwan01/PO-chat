@@ -3,7 +3,7 @@ import { NavLink } from "react-router-dom";
 import PropTypes from "prop-types";
 import "./Chat.css";
 
-class Chat extends Component {
+export default class Chat extends Component {
   componentDidMount() {
     if (!document.querySelector(".chat-container")) {
       this.props.onLoad();
@@ -29,6 +29,7 @@ class Chat extends Component {
   };
 
   renderChatList = () => {
+    console.log(this.props);
     let sortTime = this.props.chats
       .sort(function(prev, next) {
         return next.created_at.slice(3) - prev.created_at.slice(3);
@@ -83,5 +84,3 @@ Chat.propTypes = {
   onLoad: PropTypes.func,
   chats: PropTypes.array
 };
-
-export default Chat;
