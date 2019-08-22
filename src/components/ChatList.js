@@ -1,9 +1,15 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
-import PropTypes from 'prop-types';
+import PropTypes from "prop-types";
 import "./Chat.css";
 
 export default class ChatList extends Component {
+  constructor(props) {
+    super(props);
+    this.inputReset = React.createRef();
+    this.scrollBox = React.createRef();
+  }
+
   componentDidMount() {
     if (
       !document.querySelector(".chat-box") ||
@@ -12,13 +18,16 @@ export default class ChatList extends Component {
       this.props.onDetail();
     }
   }
+  componentDidUpdate() {
+    this.scrollBox.current.scrollTop = this.scrollBox.current.scrollHeight;
+  }
 
   input = () => {
-    let inputValue = document.querySelector(".chat-footer").value;
+    const inputValue = this.inputReset.current.value;
     if (!inputValue) {
       return;
     }
-    let currentTime = `${new Date().getHours()}:${new Date().getMinutes()}`;
+    const currentTime = new Date(new Date().toISOString()).toString().slice(16,21);
 
     let thumImg;
     for (let i = 0; i < this.props.detailChats.length; i++) {
@@ -26,14 +35,23 @@ export default class ChatList extends Component {
         thumImg = this.props.detailChats[i].thumbnail_image_url;
       }
     }
-    document.querySelector(".chat-footer").value = "";
+
+    this.inputReset.current.value = "";
 
     this.props.getNewMessage(
+      this.props.location.id,
+      this.props.detailChats.length + 1,
+      Number(this.props.match.params.id),
       currentTime,
-      inputValue,
       thumImg,
-      Number(this.props.match.params.id)
+      inputValue
     );
+  };
+
+  enterSubmit = e => {
+    if (e.keyCode === 13) {
+      this.input();
+    }
   };
 
   renderChatList = () => {
@@ -72,25 +90,6 @@ export default class ChatList extends Component {
     });
   };
 
-  renderNewMessage = () => {
-    console.log(this.props);
-    if (this.props.newMessage) {
-      return this.props.newMessage.map((list, index) => {
-        if (list.chat_id === Number(this.props.match.params.id)) {
-          return (
-            <div className="chat-right-box" key={index}>
-              <img className="chat-right-thum-size" alt="" src={list.img} />
-              <div className="chat-right-body">
-                <span>{list.value}</span>
-              </div>
-              <span className="chat-right-date">{list.time}</span>
-            </div>
-          );
-        }
-      });
-    }
-  };
-
   render() {
     let chatPeople = ["뽀로로", "에디", "루피", "사스케", "포비"];
     return (
@@ -104,15 +103,16 @@ export default class ChatList extends Component {
               {chatPeople[Number(this.props.match.params.id)]}
             </p>
           </div>
-          <div className="chat-body">
+          <div className="chat-body" ref={this.scrollBox}>
             {this.renderChatList()}
-            {this.renderNewMessage()}
           </div>
           <div className="chat-input">
             <input
               type="text"
+              ref={this.inputReset}
               placeholder="Type Something to send"
               className="chat-footer"
+              onKeyDown={this.enterSubmit}
             />
             <span className="chat-btn">
               <button className="chat-send" onClick={this.input}>
@@ -126,10 +126,9 @@ export default class ChatList extends Component {
   }
 }
 
-
 ChatList.propTypes = {
-  onDetail : PropTypes.func,
-  getNewMessage : PropTypes.func,
-  detailChats : PropTypes.array,
-  newMessage : PropTypes.array
-}
+  onDetail: PropTypes.func,
+  getNewMessage: PropTypes.func,
+  detailChats: PropTypes.array,
+  newMessage: PropTypes.array
+};

@@ -14,7 +14,7 @@
 .chat-container {
   display: flex;
   background: white;
-  border-bottom: 1px solid rgb(172, 172, 175);
+  border-bottom: 1px solid #eee;
 }
 .chat-main-container {
   background-color: rgb(236, 238, 241);
@@ -31,7 +31,7 @@
 }
 .chat-menu p {
   margin: 0;
-  font-size: 23px;
+  font-size: 19px;
   color: rgb(205, 205, 210);
   letter-spacing: 3px;
   font-weight: bold;
@@ -46,15 +46,20 @@
 }
 .message-block p {
   margin: 0;
-  font-size: 15px;
+  font-size: 17px;
   color: white;
-  letter-spacing: 3px;
+  letter-spacing: 1px;
   font-weight: bold;
 }
+.message-list {
+  overflow: auto;
+  height: 72vh;
+}
 .thum-size {
+  object-fit: cover;
   width: 100px;
   height: 100px;
-  border-right: 1px solid rgb(172, 172, 175);
+  border-right: 1px solid #eee;
 }
 .chat-info {
   width: 300px;
@@ -94,12 +99,12 @@
 }
 .chat-box {
   display: flex;
-  padding: 30px 20px 10px 30px;
+  padding: 20px 20px 10px 30px;
 }
 .chat-right-box {
   display: flex;
   flex-direction: row-reverse;
-  padding: 30px 20px 10px 40px;
+  padding: 20px 20px 10px 40px;
 }
 .chat-block {
   position: relative;
@@ -143,11 +148,12 @@
   z-index: 2;
 }
 .chat-footer {
-  padding-left: 30px;
+  box-sizing: border-box;
+  padding: 0 20px 0 20px;
   bottom: 24px;
   border: none;
   font-size: 15px;
-  width: 281px;
+  width: 305px;
   height: 60px;
 }
 .chat-footer:focus {
@@ -165,7 +171,8 @@
   font-size: 15px;
 }
 .chat-body {
-  height: 76vh;
+  height: 72vh;
+  padding-bottom: 30px;
   overflow: auto;
 }
 .chat-send {
@@ -176,14 +183,17 @@
   border-radius: 6px;
   right: 0;
 }
+.chat-nav:hover
 .chat-send:hover,
-.chat-goback:hover {
+.chat-goback:hover,
+.message-block:hover {
   cursor: pointer;
 }
 .chat-send:active,
-.chat-goback:active {
+.chat-goback:active,
+.message-block:active {
   opacity: 0.35;
-  transform: scale(0.95);
+  transform: scale(0.98);
   transition: 0.1s;
 }
 .chat-send:focus,
@@ -209,7 +219,7 @@
 .chat-left-body span {
   color: rgb(177, 177, 180);
   width: 215px;
-  word-break: break-all;
+  word-break: break-word;
   padding: 5px 5px 5px 20px;
 }
 .chat-left-date {
@@ -234,7 +244,7 @@
 .chat-right-body span {
   color: rgb(177, 177, 180);
   width: 215px;
-  word-break: normal;
+  word-break: break-word;
   padding: 5px 20px 5px 10px;
 }
 .chat-right-date {

@@ -5,20 +5,28 @@ import { onDetailLoad, onNewMessage } from "../actions";
 
 const mapStateToProps = state => {
   return {
-    detailChats: state.detailChats,
-    newMessage: state.newMessage
+    detailChats: state.detailChats
   };
 };
 
-const mapDispatchToProps = (dispatch) => {
+const mapDispatchToProps = dispatch => {
   return {
     onDetail: () => {
       detailDate().then(res => {
         dispatch(onDetailLoad(res));
       });
     },
-    getNewMessage: (time, value, image, chat_id) => {
-      dispatch(onNewMessage(time, value, image, chat_id));
+    getNewMessage: (
+      by,
+      id,
+      chat_id,
+      created_at,
+      thumbnail_image_url,
+      title
+    ) => {
+      dispatch(
+        onNewMessage(by, id, chat_id, created_at, thumbnail_image_url, title)
+      );
     }
   };
 };

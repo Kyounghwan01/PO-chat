@@ -1,5 +1,5 @@
 import data from "./chat.json";
-import detailData from './fakeChatList.json'
+import detailData from "./fakeChatList.json";
 
 export const getData = () => {
   return new Promise((res, rej) => {
@@ -13,12 +13,12 @@ export const getData = () => {
 };
 
 export const detailDate = () => {
-  return new Promise((res,rej) => {
-    setTimeout(function(){
+  return new Promise((res, rej) => {
+    setTimeout(function() {
       res(detailData);
-    },300);
-    if(!detailData){
-      rej(alert('데이터를 못받았습니다'));
+    }, 300);
+    if (!detailData) {
+      rej(alert("데이터를 못받았습니다"));
     }
-  })
-}
+  });
+};
