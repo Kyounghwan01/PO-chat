@@ -10,7 +10,6 @@ export default class Chat extends Component {
     if (!document.querySelector(".chat-container")) {
       this.props.onLoad();
     }
-    console.log(this.props);
   }
 
   generateRandomString = length => {

@@ -1,10 +1,9 @@
 import * as type from "../constants/ActionTypes";
 import { initalState } from "./index";
 import firebase from "firebase/app";
-import 'firebase/database'
+import "firebase/database";
 
 const ChatsReducer = (state = initalState.chats, action) => {
-  console.log(action);
   switch (action.type) {
     case type.INITIAL_CHAT_DATA:
       return state.concat(action.chatDataProps);
