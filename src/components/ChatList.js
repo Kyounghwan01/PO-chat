@@ -89,12 +89,6 @@ export default class ChatList extends Component {
     });
   };
 
-  findTitle = () => {
-    for(let i = 0; i < this.props.detailChats.length; i++){
-      console.log(this.props.detailChats[i]);
-    }
-  }
-
   render() {
     let title;
     for(let i = 0; i < this.props.detailChats.length; i++){
