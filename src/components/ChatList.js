@@ -89,8 +89,20 @@ export default class ChatList extends Component {
     });
   };
 
+  findTitle = () => {
+    for(let i = 0; i < this.props.detailChats.length; i++){
+      console.log(this.props.detailChats[i]);
+    }
+  }
+
   render() {
-    let chatPeople = ["뽀로로", "에디", "루피", "사스케", "포비"];
+    let title;
+    for(let i = 0; i < this.props.detailChats.length; i++){
+      if(this.props.detailChats[i].chat_id === Number(this.props.match.params.id)){
+        title = this.props.detailChats[i].by
+      }
+    }
+
     return (
       <div className="background">
         <div className="chat-main-container">
@@ -99,7 +111,7 @@ export default class ChatList extends Component {
               <Link to="/">뒤로</Link>
             </p>
             <p className="chat-name">
-              {chatPeople[Number(this.props.match.params.id)]}
+              {title}
             </p>
           </div>
           <div className="chat-body" ref={this.scrollBox}>
