@@ -11,6 +11,7 @@ export default class ChatList extends Component {
   }
 
   componentDidMount() {
+    this.scrollBox.current.scrollTop = this.scrollBox.current.scrollHeight;
     if (
       !document.querySelector(".chat-box") ||
       !document.querySelector(".chat-right-box")

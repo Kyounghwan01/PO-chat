@@ -1,7 +1,7 @@
 import Chat from "../components/Chat";
 import { connect } from "react-redux";
 import { getData } from "../api";
-import { initializeChatData, newMessageList } from "../actions";
+import { initializeChatData, newMessageList, deleteMessenger } from "../actions";
 
 const mapStateToProps = state => {
   return {
@@ -20,6 +20,9 @@ const mapDispatchToProps = dispatch => {
     newMessenger: (by, id, created_at, thumbnail_image_url, title) => {
       dispatch(newMessageList(by, id, created_at, thumbnail_image_url, title));
     },
+    delMessenger : () => {
+      dispatch(deleteMessenger());
+    }
   };
 };
 

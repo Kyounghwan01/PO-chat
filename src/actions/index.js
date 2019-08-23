@@ -3,6 +3,7 @@ import {
   ON_DETAIL_LOAD,
   ON_NEW_MESSAGE,
   NEW_MESSAGE_LIST,
+  DELETE_MESSENGER
 } from "../constants/ActionTypes";
 
 export const initializeChatData = chatDataProps => ({
@@ -45,4 +46,8 @@ export const onNewMessage = (
   created_at,
   thumbnail_image_url,
   title
+});
+
+export const deleteMessenger = () => ({
+  type : DELETE_MESSENGER
 });
