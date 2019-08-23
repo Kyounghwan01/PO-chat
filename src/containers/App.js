@@ -19,7 +19,7 @@ const mapDispatchToProps = dispatch => {
     },
     newMessenger: (by, id, created_at, thumbnail_image_url, title) => {
       dispatch(newMessageList(by, id, created_at, thumbnail_image_url, title));
-    }
+    },
   };
 };
 

@@ -2,7 +2,7 @@ import {
   INITIAL_CHAT_DATA,
   ON_DETAIL_LOAD,
   ON_NEW_MESSAGE,
-  NEW_MESSAGE_LIST
+  NEW_MESSAGE_LIST,
 } from "../constants/ActionTypes";
 
 export const initializeChatData = chatDataProps => ({
