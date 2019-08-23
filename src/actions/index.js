@@ -15,8 +15,14 @@ export const onDetailLoad = detailChatDataProps => ({
   detailChatDataProps
 });
 
-export const newMessageList = (by, id, created_at, thumbnail_image_url, title) => ({
-  type : NEW_MESSAGE_LIST,
+export const newMessageList = (
+  by,
+  id,
+  created_at,
+  thumbnail_image_url,
+  title
+) => ({
+  type: NEW_MESSAGE_LIST,
   by,
   id,
   created_at,
@@ -24,7 +30,14 @@ export const newMessageList = (by, id, created_at, thumbnail_image_url, title) =
   title
 });
 
-export const onNewMessage = (by, id, chat_id, created_at, thumbnail_image_url, title) => ({
+export const onNewMessage = (
+  by,
+  id,
+  chat_id,
+  created_at,
+  thumbnail_image_url,
+  title
+) => ({
   type: ON_NEW_MESSAGE,
   by,
   id,

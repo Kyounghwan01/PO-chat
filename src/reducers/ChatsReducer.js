@@ -1,5 +1,6 @@
 import * as type from "../constants/ActionTypes";
-import {initalState} from './index';
+import { initalState } from "./index";
+import firebase from "firebase";
 
 const ChatsReducer = (state = initalState.chats, action) => {
   switch (action.type) {
@@ -18,6 +19,16 @@ const ChatsReducer = (state = initalState.chats, action) => {
       });
       return newState;
     case type.NEW_MESSAGE_LIST:
+      firebase
+        .database()
+        .ref(`chats/${action.id - 1}`)
+        .update({
+          by: action.by,
+          created_at: action.created_at,
+          id: action.id - 1,
+          thumbnail_image_url: action.thumbnail_image_url,
+          title: action.title
+        });
       return state.concat(action);
     default:
       return state;

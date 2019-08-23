@@ -129,4 +129,4 @@ ChatList.propTypes = {
   getNewMessage: PropTypes.func,
   detailChats: PropTypes.array,
   newMessage: PropTypes.array
-}
+};
