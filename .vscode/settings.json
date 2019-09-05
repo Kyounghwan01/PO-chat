@@ -1,0 +1,7 @@
+{
+  "appService.zipIgnorePattern": [
+    ".vscode{,/**}"
+  ],
+  "appService.defaultWebAppToDeploy": "/subscriptions/fb467bf4-5d6e-4fd8-9463-d258bf62387a/resourceGroups/appsvc_linux_centralus/providers/Microsoft.Web/sites/po-chat-server",
+  "appService.deploySubpath": "backend"
+}

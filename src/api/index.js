@@ -16,7 +16,7 @@ const database = firebase.database();
 
 export const getData = () => {
   return new Promise((res, rej) => {
-    axios.get("http://localhost:5000/Chat/").then(response => {
+    axios.get("https://po-chat-server.azurewebsites.net/Chat/").then(response => {
       console.log("chat DB에서 들어오는 값",response);
       res(response.data)
     }).catch(function(err){
@@ -33,7 +33,7 @@ export const getData = () => {
 
 export const detailDate = () => {
   return new Promise((res, rej) => {
-    axios.get("http://localhost:5000/ChatList/").then(response => {
+    axios.get("https://po-chat-server.azurewebsites.net/ChatList/").then(response => {
       console.log("chatlist DB에서 들어오는 값",response);
       res(response.data)
     }).catch(function(err){

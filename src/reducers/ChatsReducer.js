@@ -42,7 +42,7 @@ const ChatsReducer = (state = initalState.chats, action) => {
       };
 
       axios
-        .post("http://localhost:5000/Chat/add", newMessage)
+        .post("https://po-chat-server.azurewebsites.net/Chat/add", newMessage)
         .then(res => console.log(res.data));
 
 

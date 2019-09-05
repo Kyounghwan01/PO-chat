@@ -29,7 +29,7 @@ const DetailChatsReducer = (state = initalState.detailChats, action) => {
       //     position: "right"
       //   });
 
-      axios.post("http://localhost:5000/Chat/update",{
+      axios.post("https://po-chat-server.azurewebsites.net/Chat/update",{
         by: action.by,
         id : action.chat_id,
         created_at : action.created_at,
@@ -47,7 +47,7 @@ const DetailChatsReducer = (state = initalState.detailChats, action) => {
       };
 
       axios
-        .post("http://localhost:5000/ChatList/add", newMessage)
+        .post("https://po-chat-server.azurewebsites.net/ChatList/add", newMessage)
         .then(res => console.log(res.data));
 
 
