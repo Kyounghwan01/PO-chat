@@ -6,8 +6,12 @@ import { koLocale } from "date-fns/locale/ko";
 import "./Chat.css";
 
 export default class Chat extends Component {
+  constructor(props){
+    super(props);
+    this.checkContainer = React.createRef();
+  }
   componentDidMount() {
-    if (!document.querySelector(".chat-container")) {
+    if (!this.checkContainer.current) {
       this.props.onLoad();
     }
   }
@@ -51,7 +55,7 @@ export default class Chat extends Component {
           key={list.id}
           className="chat-nav"
         >
-          <div className="chat-container">
+          <div className="chat-container" ref={this.checkContainer}>
             <img className="thum-size" alt="" src={list.thumbnail_image_url} />
             <div className="chat-info">
               <div className="chat-title-container">
@@ -73,7 +77,9 @@ export default class Chat extends Component {
           <div className="chat-menu">
             <p>CHAT</p>
           </div>
-          <div className="message-block" onClick={this.newMessenger}>
+          <div className="message-block"
+          onClick={this.newMessenger}
+          >
             <p>+ New message</p>
           </div>
           <div className="message-list">{this.renderChatList()}</div>

@@ -12,10 +12,7 @@ export default class ChatList extends Component {
 
   componentDidMount() {
     this.scrollBox.current.scrollTop = this.scrollBox.current.scrollHeight;
-    if (
-      !document.querySelector(".chat-box") &&
-      !document.querySelector(".chat-right-box")
-    ) {
+    if (!this.scrollBox.current.children.length) {
       this.props.onDetail();
     }
   }
@@ -25,8 +22,7 @@ export default class ChatList extends Component {
   }
 
   sendMessage = () => {
-    const inputValue = this.inputReset.current.value;
-    if (!inputValue) {
+    if (!this.inputReset.current.value) {
       return;
     }
     const currentTime = new Date().toISOString();
@@ -38,16 +34,16 @@ export default class ChatList extends Component {
       }
     }
 
-    this.inputReset.current.value = "";
-
     this.props.getNewMessage(
       this.props.location.id,
       this.props.detailChats.length + 1,
       Number(this.props.match.params.id),
       new Date(currentTime).toString().slice(16, 21),
       thumImg,
-      inputValue
+      this.inputReset.current.value
     );
+
+    this.inputReset.current.value = "";
   };
 
   enterSubmit = e => {
@@ -91,9 +87,11 @@ export default class ChatList extends Component {
 
   render() {
     let title;
-    for(let i = 0; i < this.props.detailChats.length; i++){
-      if(this.props.detailChats[i].chat_id === Number(this.props.match.params.id)){
-        title = this.props.detailChats[i].by
+    for (let i = 0; i < this.props.detailChats.length; i++) {
+      if (
+        this.props.detailChats[i].chat_id === Number(this.props.match.params.id)
+      ) {
+        title = this.props.detailChats[i].by;
       }
     }
 
@@ -104,9 +102,7 @@ export default class ChatList extends Component {
             <p className="chat-goback">
               <Link to="/">뒤로</Link>
             </p>
-            <p className="chat-name">
-              {title}
-            </p>
+            <p className="chat-name">{title}</p>
           </div>
           <div className="chat-body" ref={this.scrollBox}>
             {this.renderChatList()}

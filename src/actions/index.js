@@ -30,19 +30,12 @@ export const newMessageList = (
   title
 });
 
-export const onNewMessage = (
-  by,
-  id,
-  chat_id,
-  created_at,
-  thumbnail_image_url,
-  title
-) => ({
+export const onNewMessage = (by,id,chat_id,created_at,thumbnail_image_url,title) => ({
   type: ON_NEW_MESSAGE,
   by,
   id,
   chat_id,
   created_at,
   thumbnail_image_url,
-  title
+  title,
 });

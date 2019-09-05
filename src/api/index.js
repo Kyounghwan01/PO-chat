@@ -1,5 +1,6 @@
 import firebase from "firebase/app";
-import 'firebase/database'
+import 'firebase/database';
+import axios from "axios";
 
 firebase.initializeApp({
   apiKey: "AIzaSyCCG-o1AvF56_O2yIsTvB_S1FDGcFulrbw",
@@ -15,22 +16,34 @@ const database = firebase.database();
 
 export const getData = () => {
   return new Promise((res, rej) => {
-    database.ref("/chats/").once("value").then(function(snapshot) {
-      const data = snapshot.val();
-      res(data);
+    axios.get("http://localhost:5000/Chat/").then(response => {
+      console.log("chat DB에서 들어오는 값",response);
+      res(response.data)
     }).catch(function(err){
       rej(err);
     });
+    // database.ref("/chats/").once("value").then(function(snapshot) {
+    //   const data = snapshot.val();
+    //   res(data);
+    // }).catch(function(err){
+    //   rej(err);
+    // });
   });
 };
 
 export const detailDate = () => {
   return new Promise((res, rej) => {
-    database.ref("/fakeChatList/").once("value").then(function(snapshot) {
-      const data = snapshot.val();
-      res(data);
-    }).catch(function (err) {
+    axios.get("http://localhost:5000/ChatList/").then(response => {
+      console.log("chatlist DB에서 들어오는 값",response);
+      res(response.data)
+    }).catch(function(err){
       rej(err);
     });
+    // database.ref("/fakeChatList/").once("value").then(function(snapshot) {
+    //   const data = snapshot.val();
+    //   res(data);
+    // }).catch(function (err) {
+    //   rej(err);
+    // });
   });
 };
