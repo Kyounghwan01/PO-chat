@@ -1,15 +1,12 @@
 const router = require("express").Router();
 let Chat = require("../models/chat.model");
 
-//use url path "localhost:5000/로 잡아"
 router.route("/").get((req, res) => {
-  //몽구스 메소드 find : promise 리턴 json포멧으로 리턴
   Chat.find()
     .then(users => res.json(users))
     .catch(err => res.status(400).json("Error: " + err));
 });
 
-//http post
 router.route("/add").post((req, res) => {
   const by = req.body.by;
   const id = req.body.id;
